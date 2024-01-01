@@ -1,0 +1,52 @@
+{%- assign promotionFourCollection = collections[section.settings.promotion_four_collection] -%}
+{%- assign collectionName = '' -%}
+
+{%- if promotionFourCollection != blank -%}
+  {%- assign collectionName = promotionFourCollection.title -%}
+  {% if promotionFourCollection.products_count != 0 %}
+    
+    <!-- Promotional Banner -->
+    <div class="orange-banner">
+      <div class="orange-banner-content">
+        <p class="banner-text">{{ section.settings.promotion_four_text }}</p>
+      </div>
+    </div>
+    
+    <!-- Product Grid (One row, 10 products) -->
+    <div class="grid grid--no-gutters grid--uniform">
+      <div class="row">
+        {% for product in promotionFourCollection.products limit: 10 %}
+          <div class="grid__item medium-up--one-fifth small--one-fifth">
+            {% include 'product-card', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  
+  {% endif %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": {
+    "en": "Promotion Four Products"
+  },
+  "settings": [
+    {
+      "type": "collection",
+      "id": "promotion_four_collection",
+      "label": {
+        "en": "Promotion Four Collection"
+      }
+    },
+    {
+      "type": "text",
+      "id": "promotion_four_text",
+      "label": {
+        "en": "Promotion Four Text"
+      },
+      "default": "Promotion Four"
+    }
+  ]
+}
+{% endschema %}

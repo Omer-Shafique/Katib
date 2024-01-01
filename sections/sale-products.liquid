@@ -1,0 +1,231 @@
+<div class="page-width" style="margin-top:20px" data-section-id="{{ section.id }}" data-section-type="collections-list"{% if section.settings.stretch_collection_image %} data-stretch-image{% endif %}>
+  <div class="row">
+    {% for block in section.blocks %}
+    <div class="col-md-3" style="margin-top:20px">
+      <a href="{{block.settings.product.url}}">
+        <div class="card">          
+          <img src="{{block.settings.product | img_url: '150x'}}" style="width:300px; height:250px">
+          <h5 style="color:white" class="p_name">{{block.settings.product.title | truncatewords: 3, "..."}}</h5>
+          <p class="price">{{block.settings.product.price | money }}</p>
+
+        </div> 
+       </a>
+    </div>
+  {% endfor %}
+  </div> 
+</div>
+<style>  
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  background-color:#E66D38;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+.price {
+  color: black;
+  font-size: 22px;
+}
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+.card button:hover {
+  opacity: 0.7;
+}
+.p_name  
+{
+  text-decoration:none;
+}
+</style>
+
+{% schema %}
+{
+  "name": {
+    "cs": "Seznam kolekcí",
+    "da": "Kollektionsliste",
+    "de": "Kategorieliste",
+    "en": "Sale Product",
+    "es": "Lista de colecciones",
+    "fi": "Kokoelmaluettelo",
+    "fr": "Liste des collections",
+    "hi": "कलेक्शन सूची",
+    "it": "Elenco delle collezioni",
+    "ja": "コレクションリスト",
+    "ko": "컬렉션 목록",
+    "nb": "Samlingsliste",
+    "nl": "Collectielijst",
+    "pl": "Lista kolekcji",
+    "pt-BR": "Lista de coleções",
+    "pt-PT": "Lista de coleções",
+    "sv": "Kollektionslista",
+    "th": "รายการคอลเลกชัน",
+    "tr": "Koleksiyon listesi",
+    "vi": "Danh sách bộ sưu tập",
+    "zh-CN": "产品系列列表",
+    "zh-TW": "商品系列清單"
+  },
+  "class": "index-section",
+  "max_blocks": 10,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "stretch_collection_image",
+      "label": {
+        "cs": "Použít rozvržení sekundárního obrázku",
+        "da": "Brug sekundært billedlayout",
+        "de": "Sekundäres Bildlayout verwenden",
+        "en": "Use secondary image layout",
+        "es": "Usar el diseño de la imagen secundaria",
+        "fi": "Käytä vaihtoehtoista kuvan asettelua",
+        "fr": "Utiliser la disposition d'image secondaire",
+        "hi": "सहायक इमेज लेआउट का उपयोग करें",
+        "it": "Usa layout immagine secondaria",
+        "ja": "サブ画像レイアウトを使用する",
+        "ko": "보조 이미지 레이아웃 사용",
+        "nb": "Bruk sekundært bildeoppsett",
+        "nl": "Gebruik secundaire afbeelding opmaak",
+        "pl": "Użyj dodatkowego układu obrazu",
+        "pt-BR": "Use o layout de imagem secundário",
+        "pt-PT": "Utilizar esquema de imagem secundário",
+        "sv": "Använd sekundär bildlayout",
+        "th": "ใช้เลย์เอาท์รูปภาพรอง",
+        "tr": "İkincil görsel düzeni kullan",
+        "vi": "Sử dụng bố cục hình ảnh phụ",
+        "zh-CN": "使用辅助图片布局",
+        "zh-TW": "使用次要圖片版面配置"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": {
+        "cs": "Kolekce",
+        "da": "Kollektion",
+        "de": "Kategorie",
+        "en": "Product",
+        "es": "Colección",
+        "fi": "Kokoelma",
+        "fr": "Collection",
+        "hi": "कलेक्शन",
+        "it": "Collezione",
+        "ja": "コレクション",
+        "ko": "컬렉션",
+        "nb": "Samling",
+        "nl": "Collectie",
+        "pl": "Kolekcja",
+        "pt-BR": "Coleção",
+        "pt-PT": "Coleção",
+        "sv": "Produktserie",
+        "th": "คอลเลกชัน",
+        "tr": "Koleksiyon",
+        "vi": "Bộ sưu tập",
+        "zh-CN": "收藏",
+        "zh-TW": "商品系列"
+      },
+      "settings": [
+        {
+          "id": "product",
+          "type": "product",
+          "label": {
+            "cs": "Kolekce",
+            "da": "Kollektion",
+            "de": "Kategorie",
+            "en": "Product",
+            "es": "Colección",
+            "fi": "Kokoelma",
+            "fr": "Collection",
+            "hi": "कलेक्शन",
+            "it": "Collezione",
+            "ja": "コレクション",
+            "ko": "컬렉션",
+            "nb": "Samling",
+            "nl": "Collectie",
+            "pl": "Kolekcja",
+            "pt-BR": "Coleção",
+            "pt-PT": "Coleção",
+            "sv": "Produktserie",
+            "th": "คอลเลกชัน",
+            "tr": "Koleksiyon",
+            "vi": "Bộ sưu tập",
+            "zh-CN": "收藏",
+            "zh-TW": "商品系列"
+          }
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "cs": "Seznam kolekcí",
+        "da": "Kollektionsliste",
+        "de": "Kategorieliste",
+        "en": "Sale Product",
+        "es": "Lista de colecciones",
+        "fi": "Kokoelmaluettelo",
+        "fr": "Liste des collections",
+        "hi": "कलेक्शन सूची",
+        "it": "Elenco delle collezioni",
+        "ja": "コレクションリスト",
+        "ko": "컬렉션 목록",
+        "nb": "Samlingsliste",
+        "nl": "Collectielijst",
+        "pl": "Lista kolekcji",
+        "pt-BR": "Lista de coleções",
+        "pt-PT": "Lista de coleções",
+        "sv": "Kollektionslista",
+        "th": "รายการคอลเลกชัน",
+        "tr": "Koleksiyon listesi",
+        "vi": "Danh sách bộ sưu tập",
+        "zh-CN": "产品系列列表",
+        "zh-TW": "商品系列清單"
+      },
+      "category": {
+        "cs": "Kolekce",
+        "da": "Kollektion",
+        "de": "Kategorie",
+        "en": "Sale Product",
+        "es": "Colección",
+        "fi": "Kokoelma",
+        "fr": "Collection",
+        "hi": "कलेक्शन",
+        "it": "Collezione",
+        "ja": "コレクション",
+        "ko": "컬렉션",
+        "nb": "Samling",
+        "nl": "Collectie",
+        "pl": "Kolekcja",
+        "pt-BR": "Coleção",
+        "pt-PT": "Coleção",
+        "sv": "Produktserie",
+        "th": "คอลเลกชัน",
+        "tr": "Koleksiyon",
+        "vi": "Bộ sưu tập",
+        "zh-CN": "收藏",
+        "zh-TW": "商品系列"
+      },
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

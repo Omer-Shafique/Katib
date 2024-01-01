@@ -1,0 +1,30 @@
+{%- assign productTwoHandle = section.settings.product_two_handle -%}
+{%- assign productTwo = all_products[productTwoHandle] -%}
+
+{%- if productTwo != blank -%}
+  <div class="grid grid--no-gutters grid--uniform">
+    <div class="row">
+      <div class="grid__item medium-up--one-fifth small--one-fifth">
+        {% include 'product-card', product: productTwo %}
+      </div>
+    </div>
+  </div>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": {
+    "en": "Product Two Display"
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_two_handle",
+      "label": {
+        "en": "Enter Product Two Handle"
+      }
+    }
+  ]
+}
+{% endschema %}

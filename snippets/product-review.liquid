@@ -1,0 +1,109 @@
+{% comment %}
+<div class="col-12 cust-review-container">
+  <h4 class="h1--mini section-block__title cust-review-h4" id="id-review">Customer Reviews</h4>
+  <div class="row">
+    <!-- Existing code for displaying average rating and distribution -->
+
+    <!-- Form for submitting a new review -->
+    <form method="post" id="review-form">
+  <div class="star-rating">
+  {% assign ratings = product.metafields.my_fields.product_reviews_ratings.value %}
+  {% if ratings %}
+    {% assign rating_value = ratings.rating | round %}
+    {% for iteration in (1..5) %}
+      <input type="radio" {% if iteration <= rating_value %}checked{% endif %} required id="star{{ iteration }}" name="rating">
+      <label for="star{{ iteration }}">&#9733;</label>
+    {% endfor %}
+    <span>({{ ratings.rating }} out of 5) <a href="#id-review">{{ ratings.one_star | plus: ratings.two_star | plus: ratings.three_star | plus: ratings.four_star | plus: ratings.five_star }} Ratings</a> | <a href="#id-review">Add your review</a></span>
+    <br>
+    <br>
+  {% endif %}
+</div>
+     <div class="col-12 col-sm-4" style="padding: 0px;">
+  <input type="text" placeholder="Enter your name" id="review-name" class="form-control" style="width: 110px; , padding-left:100px;" required/>
+</div>
+      <br>
+      <textarea name="" class="form-control col-12 col-sm-8" id="review-txt" cols="40" rows="3" placeholder="write a review" required></textarea>
+      <input type="button" class="btn-sm btn-primary" onclick="showHide()" value="Submit" />
+    </form>
+
+    <!-- Alerts for success and error messages -->
+    <div class="alert alert-success col-md-8 review-alert" role="alert" id="alert">
+      <p align="center">Thanks for your precious feedback!</p> 
+    </div>
+    <div class="alert alert-danger col-md-8 review-alert" role="alert" id="alert-error">
+      <p align="center" id="error">Thanks for your precious feedback!</p> 
+    </div>
+
+    <!-- Loop through existing reviews and display them -->
+    {% assign review = product.metafields.my_fields.product_reviews.value  %}
+    {% if review %}
+      {% for i in (0..1000) %}
+        {% if review[i].username  %}
+          <!-- Code to display individual reviews -->
+        {% else %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .checked {
+    color: orange;
+  }
+
+  .unchecked {
+    color: #d8d8d8;
+  }
+
+  #review-name{
+    width:100vh !important;
+    overflow: display;
+  }
+
+  .star-rating {
+    font-size: 24px;
+  }
+
+  .star-rating input {
+    display: none;
+  }
+
+  .star-rating label {
+    display: inline-block;
+    cursor: pointer;
+    color: #d8d8d8;
+  }
+
+  .star-rating input:checked ~ label,
+  .star-rating label:hover {
+    color: orange;
+  }
+
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const starInputs = document.querySelectorAll('.star-rating input');
+
+    starInputs.forEach(function(starInput, index) {
+      starInput.addEventListener('mouseover', function() {
+        // Highlight all previous and current stars on hover
+        for (let i = 0; i <= index; i++) {
+          starInputs[i].style.color = 'orange';
+        }
+      });
+
+      starInput.addEventListener('mouseout', function() {
+        // Reset color for all stars on mouseout
+        starInputs.forEach(function(star) {
+          star.style.color = '';
+        });
+      });
+    });
+  });
+</script>
+{% endcomment %}
+

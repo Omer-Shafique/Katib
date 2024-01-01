@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }}</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-content {
+      display: block;
+      margin-top: 0 !important;
+      padding-bottom: 40px;
+    }
+
+    .h1 {
+  margin-top: -20%;
+  color: #ffffff !important;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  font-size: 2.5em;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: moveLeft 1s ease-in-out;
+  background-color: #ff8000; 
+  padding: 10px; 
+  border-top-right-radius: 25px;
+  margin-right: 300px;
+}
+
+.p {
+  color: #ffffff;
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  margin-right: 300px;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-bottom-right-radius: 25px;
+  padding: 10px; 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes moveLeft {
+  from {
+    transform: translateX(300px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 750px;
+      overflow: hidden;
+    }
+
+    .banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .text-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+    }
+
+    .product-card {
+      border: none;
+       width: 320px;
+      height: 300px;
+    }
+
+    .landing-content {
+      padding: 20px;
+    }
+
+  </style>
+  
+</head>
+<body>
+
+  <section class="main-content">
+    <div class="banner">
+      <img src="https://images.unsplash.com/photo-1693031630146-568e2f72db0e?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        alt="Banner Image" width='100%' height='100%'>
+      <div class="text-container">
+        <div class="landing-content">
+          <h1>{{ section.settings.heading-text }}</h1>
+          <p>Discover top-quality paper for your store – we make it easy, delivering excellence right to your doorstep, ensuring your shelves are always stocked with the best!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="main-content">
+    <div style="display : flex" >
+      <div style="flex: 0;" class="product-card">
+        {% section 'product-one-other-cities-subsection' %}
+      </div>
+      <div style="flex: 0;" class="product-card">
+        {% section 'product-two-other-cities-subsection' %}
+      </div>
+      <div style="flex: 0;" class="product-card">
+        {% section 'product-three-other-cities-subsection' %}
+      </div>
+      <div style="flex: 0;" class="product-card">
+        {% section 'product-four-other-cities-subsection' %}
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

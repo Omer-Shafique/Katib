@@ -1,0 +1,54 @@
+
+{%- assign promotionTwoCollection = collections[section.settings.promotion_two_collection] -%}
+{%- assign collectionName = '' -%}
+
+{%- if promotionTwoCollection != blank -%}
+  {%- assign collectionName = promotionTwoCollection.title -%}
+  {% if promotionTwoCollection.products_count != 0 %}
+    
+  
+    <div class="orange-banner">
+      <div class="orange-banner-content">
+        <p class="banner-text">{{ section.settings.promotion_two_text }}</p>
+      </div>
+    </div>
+    
+  
+    <div class="grid grid--no-gutters grid--uniform">
+      <div class="row">
+        {% for product in promotionTwoCollection.products limit: 10 %}
+          <div class="grid__item medium-up--one-fifth small--one-fifth">
+            {% include 'product-card', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  
+  {% endif %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": {
+    "en": "Promotion Two Products"
+  },
+  "settings": [
+    {
+      "type": "collection",
+      "id": "promotion_two_collection",
+      "label": {
+        "en": "Promotion Two Collection"
+      }
+    },
+    {
+      "type": "text",
+      "id": "promotion_two_text",
+      "label": {
+        "en": "Promotion Two Text"
+      },
+      "default": "Promotion Two"
+    }
+  ]
+}
+{% endschema %}
+

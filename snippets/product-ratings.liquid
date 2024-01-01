@@ -1,0 +1,31 @@
+{% assign ratings = product.metafields.my_fields.product_reviews_ratings.value %}
+{% if ratings %}
+ {% assign rating_value = ratings.rating | round %}
+ {% for iteration in (1..5) %}
+  {% if iteration <= rating_value %}
+   <span class="fa fa-star checked"></span> 
+  {% else %}
+   <span class="fa fa-star unchecked"></span>
+  {% endif %}
+ {% endfor %}
+<span>({{ratings.rating}} out of 5 ) <a href="#id-review">{{ratings.one_star | plus: ratings.two_star | plus: ratings.three_star | plus: ratings.four_star | plus: ratings.five_star}} Ratings</a> | <a href="#id-review">Add your review</a></span>
+<br>
+<br>
+{% comment %}
+{% else %}
+   <span class="fa fa-star unchecked"></span>
+   <span class="fa fa-star unchecked"></span>
+   <span class="fa fa-star unchecked"></span>
+   <span class="fa fa-star unchecked"></span>
+   <span class="fa fa-star unchecked"></span>
+   <span>(0 out of 5 ) <a href="#id-review">0 Ratings</a> | <a href="#id-review">Add your review</a></span>
+{% endcomment %}
+{% endif %}
+ <style> 
+   .checked {
+     color: orange;
+ }
+   .unchecked {
+     color: #d8d8d8;
+ }
+ </style>

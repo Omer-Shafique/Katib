@@ -1,0 +1,140 @@
+<div style="background-color:#FFFFFF ;">
+<div class="container-fluid margin-top" style="background-color:#FFFFFF ;">
+    <br><br><br>
+    <center>
+        <h1>Simple, powerful & recognizable links</h1>
+        <p class="grey-color">Brand, track, and share your short links, engage with your users on a different level.</p>
+    </center>
+    <br><br>
+  	<form class="form-inline">
+    <div class="row">
+        <div class="col-12 col-sm-2">
+      		<br>	
+      	</div>
+        <div class="col-12 col-sm-7">
+          <br>
+          <div class="input-group col-12 col-sm-12">
+            <div class="input-group-prepend">
+              <div class="input-group-text">URL: </div>
+            </div>
+            <input type="url" class="form-control" id="linkinput" placeholder="Shorten your link" required autocomplete="off">
+          </div>
+        </div>
+        <div class="col-12 col-sm-1">
+          <br>
+          <center>
+            <input type="button" class="btn div-center" id="myinput" value="Submit">
+            <button type="button" onclick="copyText()" class="btn div-center" id="copyinput" style="display: none;">Copy</button>
+          </center>
+      	</div>
+      	<div class="col-12 col-sm-2"></div>
+    </div>
+  	</form>
+  <br>
+  <div class="alert alert-success col-12 col-sm-4" role="alert" id="mxg" style="display: none; margin: auto">
+    congratulations! your link has been modified...
+  </div>
+  <div class="alert alert-danger col-12 col-sm-4" role="alert" id="error-mxg" style="display: none; margin: auto">
+    Link maybe dead or broken...
+  </div>
+  <br><br>
+</div>
+<div style="background-color:#F5F5F5;">
+    <div class="container">
+      <br>
+        <div class="row">
+            <div class="col-12 col-sm-4">
+              	<br>
+                <center>    
+                    <h1 class="big-font">2,622</h1>
+                    <h6 class="grey-color">Created links</h6>
+                </center>
+              	<br> 
+          	</div>
+            <div class="col-12 col-sm-4">
+              	<br>	  
+              	<center>    
+                    <h1 class="big-font">986,329</h1>
+                    <h6 class="grey-color">Redirected links</h6>
+                </center>
+                <br>  
+          	</div>
+            <div class="col-12 col-sm-4">
+              	<br>  
+              	<center>    
+                    <h1 class="big-font">64</h1>
+                    <h6 class="grey-color">Registered users</h6>
+                </center>
+              	<br>  
+          </div>
+        </div>
+      	<br>
+    </div>
+</div>
+</div>
+<style>
+    .margin-top
+    {
+      	margin-top: -60px;
+    }
+    .div-center{
+        margin: auto;
+    }
+    .big-font{
+        font-size: 3rem;
+        font-weight: 400;
+    }
+    .grey-color{
+        color: #757575!important
+    }
+</style>
+<script>
+  document.getElementById("myinput").onclick = function() {
+    var link = document.getElementById("linkinput").value;
+    if (link == 0)
+    {
+    	document.getElementById("error-mxg").style.display = "block";
+    }
+    var data = {
+      "domain":"url-katib.tk",
+      "originalURL": link,
+      "allowDuplicates":false }; 
+    fetch('https://api.short.cm/links/public', {
+      method: 'post',
+      headers: {
+        'accept': 'application/json',
+        'Content-Type': 'application/json',
+        'authorization': 'pk_fWRqFCbl3Ez64jhZ'
+      },
+      body: JSON.stringify(data)
+    }).then(function(response) {
+      return response.json();
+    }) 
+    .then(function(data){ 
+      document.getElementById("linkinput").value= data.shortURL; // assign short url to input field
+      // display message
+      if (data.shortURL != 0)
+      {
+        document.getElementById("mxg").style.display = "block";
+      }
+      else{
+      	document.getElementById("error-mxg").style.display = "block";
+      }
+      
+      document.getElementById("myinput").style.display = "none"; // hide submit button
+      document.getElementById("copyinput").style.display = "inline"; // display copy button
+    })
+  }
+  
+  // copy text
+  function copyText() {
+    var copyText = document.getElementById("linkinput");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+    document.getElementById("copyinput").innerHTML="Copied!";
+    document.getElementById("copyinput").style.backgroundColor="#F4743C";
+    document.getElementById("copyinput").style.color="#FFFFFF";
+    //alert("Copied the text: " + copyText.value);
+  }
+</script>

@@ -1,0 +1,67 @@
+{%- assign productOneHandle = section.settings.product_one_handle -%}
+{%- assign productOne = all_products[productOneHandle] -%}
+
+{%- if productOne != blank -%}
+  <div class="grid grid--no-gutters grid--uniform">
+    <div class="row">
+      <div class="grid__item medium-up--one-fourth small--one-half">
+        {% include 'product-card', product: productOne %}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+<style>
+  .grid__item {
+    box-sizing: border-box;
+    padding: 0 15px;
+  }
+
+  .product-card{
+    width:250px;
+    height:400px;
+  }
+{% comment %}
+
+  @media (min-width: 768px) {
+    .medium-up--one-fourth {
+      width: 100%;
+    }
+    .product-card {
+      border: none;
+       width: 280px;
+      height: 280px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .small--one-half {
+      width: 100%;
+    }
+    .product-card {
+      border: none;
+       width: 400px;
+      height: 400px;
+    }
+  }
+  {% endcomment %}
+  
+</style>
+
+
+{% schema %}
+{
+  "name": {
+    "en": "Product One Display"
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "product_one_handle",
+      "label": {
+        "en": "Enter Product One Handle"
+      }
+    }
+  ]
+}
+{% endschema %}

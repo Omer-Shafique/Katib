@@ -1,0 +1,47 @@
+<h1>{{ settings.heading_text }}</h1>
+{% section 'banners-promotion-omer' %}
+{% section 'promotion-one-products-subsection-omer' %}
+{% section 'promotion-two-products-subsection-omer' %}
+{% section 'promotion-three-products-subsection-omer' %}
+{% section 'promotion-four-products-subsection-omer' %}
+{% section 'promotion-five-products-subsection-omer' %}
+
+<style>
+  h1 {
+   text-align: center;
+   font-size: 70px;
+   font-weight: bold;
+   font-family: 'Franklin Gothic Medium';
+   text-transform: uppercase;
+   color: #f4743c;
+   background-image: linear-gradient(45deg, rgba(244, 116, 60, 1), #f72900, rgba(244, 116, 60, 1));
+   background-size: 20% 20%;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   animation: glowingText 9s ease-in-out infinite;
+   margin-left: 7%;
+   display: block;
+   border-bottom: none;
+   padding-bottom: 0;
+   margin-bottom: 70px;
+   }
+   @keyframes glowingText {
+   0% {
+   background-position: 0% 0;
+   }
+   100% {
+   background-position: 200% 0;
+   }
+   }
+
+  @media (max-width: 750px) {
+    h1 {
+   font-size: 30px;
+   }
+  }
+   @media (max-width: 575px) {
+   h1 {
+   font-size: 30px;
+   }
+   }
+</style>

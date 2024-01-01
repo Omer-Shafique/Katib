@@ -1,0 +1,124 @@
+{%- assign promotionCollection = collections[section.settings.promotion_collection] -%}
+{%- assign collectionName = '' -%}
+
+{%- if promotionCollection != blank -%}
+  {%- assign collectionName = promotionCollection.title -%}
+  {% if promotionCollection.products_count != 0 %}
+    <div class="orange-banner">
+      <div class="orange-banner-content">
+        <p class="banner-text">{{ section.settings.promotion_text }}</p>
+      </div>
+    </div>
+
+ 
+    <div class="grid grid--no-gutters grid--uniform">
+      
+      <div class="row">
+        {% for product in promotionCollection.products limit: 10 %}
+          <div class="grid__item medium-up--one-fifth small--one-fifth">
+            <div id="product-card">
+              {% include 'product-card', product: product %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+{%- endif -%}
+    
+
+
+{% schema %}
+{
+  "name": "Promotion One Products ",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "promotion_collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "text",
+      "id": "promotion_text",
+      "label": "Promotion Text",
+      "default": "Promotion One"
+    }
+  ]
+}
+{% endschema %}
+
+  <style>
+  
+ .orange-banner {
+  width: 100vw;
+  background-image: url('https://img.freepik.com/free-photo/abstract-orange-background-layout-design-studio-room-web-template-business-report-with-smooth-circle-gradient-color_1258-58201.jpg?size=626&ext=jpg&ga=GA1.1.1020435597.1701266295&semt=ais');
+  max-width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  border-radius: 0px !important;
+  border-top-left-radius: 20px !important;
+  border-top-right-radius: 20px !important;
+  overflow: hidden;
+  box-sizing: border-box;
+   margin-top: 40px;
+   margin-bottom: 15px;
+}
+
+  .orange-banner-content {
+    color: white;
+  }
+
+  .banner-text {
+    font-family: 'Franklin Gothic Medium'; 
+    font-size: 30px; 
+    font-weight: bold;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 2px;
+    
+  }
+
+  @media (max-width: 991px) {
+  .grid__item {
+    width: calc(100% / 4);
+  }
+  .banner-text {
+    font-size: 30px; 
+    font-weight: 700;
+ }
+
+  
+  }
+}
+
+
+@media (max-width: 767px) {
+  .grid__item {
+    width: calc(100% / 3);
+  }
+  .banner-text {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+ }
+}
+
+
+@media (max-width: 575px) {
+  .grid__item {
+    width: calc(100% / 2);
+  }
+  .banner-text {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+ }
+}
+
+</style>
+
+

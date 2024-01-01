@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
+
+    <style>
+      
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .delivery-image{
+          margin-top:0%;
+        }
+
+        .banner-s {
+
+            margin-bottom: 5%;
+            order: 1;
+            position: relative;
+            margin-top: -5%;
+            height:100vh;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .main-content-s {
+            padding: 0;
+        }
+
+        .section-s {
+            padding: 0 0 30px 0;
+            height: calc(100% - 80px);
+        }
+
+        .section-even{
+          background-color: #f0f0f0 !important;
+          padding-bottom: 2%;
+        }
+
+        @media (max-width: 767px) {
+            .delivery-image {
+                margin-bottom: -12%;
+                margin-top:5%;
+            }
+
+            .banner-s {
+                margin-top: -10%;
+                height: 30vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="main-content-s">
+        <div class="banner-s">
+            <img
+                src="https://cdn.shopify.com/s/files/1/0578/5826/1177/files/compressed_banner_paper_right_d922136c-543e-490a-95f1-324ea7fa7724.jpg?v=1702131052"
+                alt="Banner Image"
+            >
+            <div class="text-container-s">
+                <div class="landing-content-s"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-content-s section-even">
+        <div class="section-s product-card-s">
+            <section class="sub-section">
+                {% section 'collection-one-cod-del' %}
+            </section>
+        </div>
+    </section>
+
+    <section>
+        <img class="delivery-image"
+            src="https://cdn.shopify.com/s/files/1/0578/5826/1177/files/paper-right-banner.jpg?v=1702130358"
+            alt="Banner Image">
+    </section>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<div class="page-width">
+  <div class="content-block">
+  <h1 class="small--text-center" style="text-align: center;">COMPLAINT FORM</h1><br><br>
+    <h5 style="text-align: center;"><span style="color: #001466; background: yellow;"><strong id="message"></strong></span></h5>
+    <br>
+    <div class="contact-form form-vertical">
+        <div class="grid grid--half-gutters">
+          <div class="grid__item medium-up--one-half">
+            <label for="ContactFormName" class="label--hidden">Name*</label>
+            <input type="text" id="ContactFormName" name="name" placeholder="Enter Name*" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
+          </div>
+          <div class="grid__item medium-up--one-half">
+            <label for="ContactFormPhone" class="label--hidden">Phone</label>
+            <input type="tel" id="ContactFormPhone" name="Phone" placeholder="Enter Phone*" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
+          </div>
+        </div>
+        <div class="grid grid--half-gutters">
+           <div class="grid__item medium-up--one-half">
+             <label for="ContactFormPhone" class="label--hidden">Order no</label>
+             <input type="number" id="ContactFormOrder" name="order_no" placeholder="Enter Order Number (optional)" >
+           </div>
+           <div class="grid__item medium-up--one-half">
+            <label for="ContactFormPhone" class="label--hidden">Attachment</label>
+            <input type="file" id="ContactFormAttachment" name="attachment">
+          </div>
+        </div>
+        <label for="ContactFormMessage" class="label--hidden">Complaint Description</label>
+        <textarea rows="10" id="ContactFormMessage" name="issue_desp" placeholder="Enter Complaint Description*"></textarea>
+        <br>
+        <h5 style="text-align: center;"><span style="color: #001466;"><strong id="message"></strong></span></h5>
+        <br>
+        <button onclick="myFunction()" class="my-button">SEND</button>
+      <style>
+        .my-button{
+          background-color: #f4743c;
+          border: 1px solid #F4743C;
+          color: #fff;
+          width: 100%;
+          font-size: 1rem;
+          line-height: 1.5;
+          border-radius: 0.25rem;
+          padding: 0.375rem 0.75rem;
+        }
+      </style>
+
+    </div>
+  </div>
+  <br>
+  <br>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+  
+<script>
+  
+  function myFunction() {
+    var complain_number = "#{{ "now" | date: "%y%m%d%H%M" }}";
+    var customer_name = document.getElementById("ContactFormName").value;
+    var customer_phone = document.getElementById("ContactFormPhone").value;
+    var customer_order = document.getElementById("ContactFormOrder").value;
+    var customer_issue = document.getElementById("ContactFormMessage").value;  
+    
+    var TOKEN = "d50698df96527d1edd48d757dab1203ec1e017be33620c5b74f51c25c07eb439";
+    var KEY = "95fb7cadfc11e6882ae747426b74dfec";
+    var LIST_ID = "63a6b7dd0f8075022e8afcc6";
+    var CARD = "";
+    var card_text = "Customer Name: "+customer_name+"\n Customer Phone: "+customer_phone+"\n Order no: "+customer_order+"\n Date: {{ "now" | date: "%d-%m-%Y %H:%M" }}"+"\n Description: "+customer_issue;
+
+    var formData = new FormData();
+    formData.append("key", KEY);
+    formData.append("token", TOKEN);
+    formData.append("idList", LIST_ID);
+    formData.append("name", complain_number);
+    formData.append("desc", card_text);
+    formData.append("pos", "1");
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) { 
+          CARD = JSON.parse(this.responseText)["shortLink"];
+          if(document.getElementById('ContactFormAttachment').files[0] !== null){
+          var formData = new FormData();
+          formData.append("token", TOKEN);
+          formData.append("key", KEY);
+          formData.append("file", document.getElementById('ContactFormAttachment').files[0]);
+          var request = new XMLHttpRequest();
+
+          request.open("POST", "https://api.trello.com/1/cards/" + CARD + "/attachments");
+          request.send(formData);
+
+          document.getElementById("message").innerHTML = "  Please note your claim number "+complain_number+" which can be used to follow up on the related matter. Our team will contact you within 24 hours.  ";
+          document.getElementById("ContactFormAttachment").value = "";  
+        }
+       }
+    };
+    request.open("POST", "https://api.trello.com/1/cards/");
+    request.send(formData);
+
+    document.getElementById("ContactFormName").value = "";
+    document.getElementById("ContactFormPhone").value = "";
+    document.getElementById("ContactFormOrder").value = "";
+    document.getElementById("ContactFormMessage").value = "";  
+    
+
+  }
+</script>
+

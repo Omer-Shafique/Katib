@@ -1,0 +1,333 @@
+{% schema %}
+{
+  "name": {
+    "en": "Products One COD DEL"
+},
+  "settings": [
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Products",
+      "limit": 12
+    }
+  ]
+}
+{% endschema %}
+
+<div class="grid grid--no-gutters grid--uniform">
+  <div class="row">
+    {% assign products = section.settings.product_list.products | compact %}
+    {% if products.size > 0 %}
+      {% for product in products %}
+        <div class="grid__item medium-up--one-quarter small--one-half">
+          <div class='productCard'>
+            <p>{{ product.title }}</p>
+            <!-- Add other relevant product information here -->
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p>nahi products found.</p>
+    {% endif %}
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+      .text{
+        margin-left:20px;
+        font-size:10px;
+        font-weight:bold;
+        color:#1B4242;
+      }
+    .decrease{
+      margin-left: 13%;
+    }
+
+    .increase{
+      margin-right: 14%;
+    }
+  
+   .buttonsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+   }
+   
+   .productCard {
+      width: 300px;
+      height: 550px;
+      border: 0px solid #ddd;
+      padding: 10px; 
+      margin-bottom: 20px; 
+      overflow:hidden;
+      margin-left:-0.5%;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+     margin-top:20%;
+     background-color: #ffffff;
+   }
+
+   .productCard img {
+      max-width: 100%; 
+      height:auto;
+   }
+
+   .btn {
+      display: none;
+   }
+
+   .quantity-selector {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+   }
+
+   .quantity-btn {
+      background-color: #2E4F4F;
+      border: none;
+      color: #ffffff;
+      font-size: 16px;
+      cursor: pointer;
+      padding: 5px 17px;
+   }
+
+   .quantity-input {
+      width: 50%;
+      text-align: center;
+      margin: 0 5px;
+      cursor: default;
+      user-select: none;
+     margin: 0 auto;
+     padding: 3px 1px;
+     background-color: #FAF0E6;
+   }
+
+   .addtocartbtn, .buynowbtn {
+      display: flex;
+      align-items: center;
+      margin-top: 2%;
+      color: white;
+      border: none;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 7px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.5s ease, transform 0.3s ease;
+     whitespace: nowrap;
+   }
+
+   .addtocartbtn {
+      background-color: #183D3D;
+      padding: 10px 20%;
+       margin-top:3%;
+     margin-bottom:10px;
+   }
+
+   .addtocartbtn:hover {
+      background-color: #93B1A6;
+      transform: translateY(-5px);
+   }
+
+   .buynowbtn {
+      background-color: #092635;
+      padding: 10px 20.75%;
+      margin-top:10%;
+   }
+
+   .buynowbtn:hover {
+      background-color: #5C8374;
+      text-decoration: none;
+      color: white;
+   }
+
+   @media (max-width: 1175px) {
+      .grid__item {
+         width: 33.33% !important;
+      }
+
+      .productCard {
+         margin-left:1.5%;
+         width: 90%; 
+         margin-bottom:0 !important;
+         height:100%;
+      }
+
+      
+   }
+
+@media (max-width: 767px) {
+   .grid__item {
+      width: 100% !important;
+   }
+
+   .productCard {
+      margin-left: 1.5%;
+      width: 90%;
+      margin-bottom: 0 !important;
+      height: 100%;
+     margin-top:10%;
+   }
+
+   .buttonsContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between; 
+       align-items: baseline;
+   }
+
+   .addtocartbtn,
+   .buynowbtn {
+      padding: 10px 5%;
+      margin-bottom: 0%;
+      width: 48%; 
+   }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+   function updateQuantity(variantId, change) {
+      const quantityInput = document.getElementById('quantity-' + variantId);
+      let quantity = parseInt(quantityInput.value) + change;
+   
+      quantity = Math.max(quantity, 2);
+      quantityInput.value = quantity;
+   
+      const cartQuantityInput = document.querySelector('form[data-variant="'+variantId+'"] .cart-quantity');
+      cartQuantityInput.value = quantity;
+   }
+   
+   document.querySelectorAll('.add-to-cart-form').forEach(form => {
+      form.addEventListener('submit', event => {
+         event.preventDefault();
+         form.submit();
+      });
+   });
+   
+   document.querySelectorAll('.buynowbtn').forEach(buyNowBtn => {
+      buyNowBtn.addEventListener('click', event => {
+         event.preventDefault();
+   
+         clearCart();
+   
+         const form = buyNowBtn.closest('.add-to-cart-form');
+         const variantId = form.querySelector('input[name="id"]').value;
+         const quantity = form.querySelector('.cart-quantity').value;
+   
+         const checkoutForm = document.createElement('form');
+         checkoutForm.action = '/cart/add';
+         checkoutForm.method = 'post';
+         checkoutForm.enctype = 'multipart/form-data';
+   
+         const productIdInput = document.createElement('input');
+         productIdInput.type = 'hidden';
+         productIdInput.name = 'id';
+         productIdInput.value = variantId;
+   
+         const quantityInput = document.createElement('input');
+         quantityInput.type = 'hidden';
+         quantityInput.name = 'quantity';
+         quantityInput.value = quantity;
+   
+         checkoutForm.appendChild(productIdInput);
+         checkoutForm.appendChild
+
+(quantityInput);
+   
+         document.body.appendChild(checkoutForm);
+         checkoutForm.submit();
+         document.body.removeChild(checkoutForm);
+      });
+   });
+   
+   function clearCart() {
+      fetch('/cart.js')
+         .then(response => response.json())
+         .then(cartData => {
+            if (cartData.items.length > 0) {
+               cartData.items.forEach(item => {
+                  fetch(`/cart/change/${item.key}.js`, {
+                     method: 'POST',
+                     headers: {
+                        'Content-Type': 'application/json',
+                        'X-Requested-With': 'XMLHttpRequest',
+                     },
+                     body: JSON.stringify({
+                        quantity: 0,
+                     }),
+                  });
+               });
+            }
+   
+            window.location.href = '/checkout';
+         })
+         .catch(error => {
+            console.error('Error clearing cart:', error);
+         });
+   }
+</script>
+

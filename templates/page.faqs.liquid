@@ -1,0 +1,417 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<style>
+    main#MainContent {
+        padding: 0px;
+        margin: 0px;
+    }
+  
+    img#article-images {
+        height: 300px;
+        width: auto;
+    }
+    
+    .faqContain .selectors a {
+        border-radius: 4px;
+        padding: 12px 15px;
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500;
+        color: #1b1b19;
+        text-transform: uppercase;
+        width: 100%;
+        display: block;
+        margin-bottom: 6px;
+    }
+    
+    .faqContain .selectors a.active {
+        background: #212121;
+        color: #ffffff;
+    }
+    
+    .faqContain .selectors a:hover {
+        background: #0fb390;
+        color: #ffffff;
+    }
+    
+    .faqContain .answerContain {
+        border: 1px solid #d6d6d6;
+        padding: 25px;
+        background-color: #fff;
+    }
+    
+    .faqContain .answerContain h2 {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+    
+    .faqContain .answerContain .questionBlock:hover {
+        cursor: pointer;
+    }
+    
+    .faqContain .answerContain .questionBlock h3 {
+        font-size: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+        padding: 10px;
+        border-bottom: 1px solid #d6d6d6;
+        text-align: justify;
+    }
+    
+    .faqContain .answerContain .questionBlock>div {
+        float: left;
+        width: 100%;
+        display: none;
+    }
+    
+    .faqContain .answerContain .questionBlock h3::after {
+        content: "+";
+        position: absolute;
+        right: 20px;
+        top: 5px;
+        display: block;
+        height: 20px;
+        width: 20px;
+        border: 1px solid #d6d6d6;
+        border-radius: 0;
+        text-align: center;
+        line-height: 16px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #1b1b19;
+    }
+    
+    .faqContain .answerContain .questionBlock.active h3::after {
+        content: "-";
+        line-height: 18px;
+    }
+    
+    .faqContain .answerContain .questionBlock.active p {
+        display: block;
+    }
+    
+    .faqContain .answerContain .questionBlock p {
+        display: block;
+        font-size: 16px;
+        line-height: 28px;
+        font-weight: 300;
+        color: #212121;
+        padding-left: 10px;
+    }
+    
+    @media (max-width: 576px) {
+        .faqContain .answerContain .questionBlock h3 {
+            /* margin-right: 20px; */
+            padding-right: 30px;
+        }
+    }
+    
+    .my-col {
+        background-color: #fff;
+        margin-bottom: 30px;
+        padding: 5px;
+        border-radius: 4px;
+    }
+    
+    .helpcenter-container {
+        background-color: #0fb390;
+        padding: 60px;
+    }
+    
+    .faq-message-container {
+        margin: 20px;
+    }
+    
+    .faqs-h1 {
+        color: #fff;
+    }
+    
+    .faqs-h5 {
+        color: #fff;
+    }
+    
+    .faqs-h6 {
+        color: #000;
+        font-size: 1.2rem;
+        font-weight: 600;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    
+    .helpcenter-container a {
+        text-decoration: none;
+    }
+    
+    .faqs-ul {
+        font-size: 16px;
+        line-height: 30px;
+        margin: 11px;
+    }
+    
+    .faqs-ul-1 {
+        list-style: none;
+        font-size: 16px;
+        line-height: 30px;
+        margin: 11px;
+    }
+    
+    @media only screen and (max-width: 768px) {
+        .helpcenter-container {
+            padding: 30px 0px
+        }
+        .my-col {
+            margin: 10px 0px;
+            padding: 15px;
+        }
+        .faq-message-container {
+            margin: 0px;
+        }
+        .faqs-h1 {
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 36px;
+        }
+        .faqs-h5 {
+            font-size: 18px;
+            margin: 12px 0;
+            margin-bottom: 30px;
+        }
+    }
+</style>
+
+<div class="helpcenter-container">
+    <div class="container-fuild selectors">
+        <div class="row" style="margin: auto;">
+            <div class="col-12">
+                <div class="container faq-message-container">
+                    <div class="row">
+                        <h1 class="faqs-h1">Welcome to Katib Customer Service</h1>
+                        <h5 class="faqs-h5">What would you like help with today? You can quickly take care of most things here, or connect with us when needed.</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin: auto;">
+            <div class="col-md-4">
+                <a href="">
+                    <div class="container my-col">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://cdn.shopify.com/s/files/1/0578/5826/1177/files/delivery.png?v=1672049385" alt="" width="100%" height="100%">
+                            </div>
+                            <div class="col-8" style="display: table;">
+                                <h6 class="faqs-h6">Delivery, Order or Return</h6>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="">
+                    <div class="container my-col">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://cdn.shopify.com/s/files/1/0578/5826/1177/files/availability_check.png?v=1672049385" alt="" width="100%" height="100%">
+                            </div>
+                            <div class="col-8" style="display: table;">
+                                <h6 class="faqs-h6">Check Products Availability</h6>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="">
+                    <div class="container my-col">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://cdn.shopify.com/s/files/1/0578/5826/1177/files/quotation.png?v=1672049385" alt="" width="100%" height="100%">
+                            </div>
+                            <div class="col-8" style="display: table;">
+                                <h6 class="faqs-h6">Quotation / Pricing</h6>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row" style="margin: auto;">
+            <div class="col-md-4">
+                <a href="">
+                    <div class="container my-col">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://cdn.shopify.com/s/files/1/0578/5826/1177/files/special_request.png?v=1672049385" alt="" width="100%" height="100%">
+                            </div>
+                            <div class="col-8" style="display: table;">
+                                <h6 class="faqs-h6">Special Request</h6>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="">
+                    <div class="container my-col">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://cdn.shopify.com/s/files/1/0578/5826/1177/files/privacy_policy.png?v=1672049385" alt="" width="100%" height="100%">
+                            </div>
+                            <div class="col-8" style="display: table;">
+                                <h6 class="faqs-h6">Account, security & privacy</h6>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="">
+                    <div class="container my-col">
+                        <div class="row">
+                            <div class="col-4">
+                                <img src="https://cdn.shopify.com/s/files/1/0578/5826/1177/files/something_else.png?v=1672049384" alt="" width="100%" height="100%">
+                            </div>
+                            <div class="col-8" style="display: table;">
+                                <h6 class="faqs-h6">Something else</h6>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br>
+<div class="container-fluid faqContain" style="width: 85%;">
+    <div class="title">
+        <h3>All help topics</h3>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-12 col-lg-3 col-xl-3 selectors">
+            <a class="active" href="0">Recommended Topics</a>
+            <a class="" href="1" id="basic_idea">Where's my stuff</a>
+            <a class="" href="2">Shipping and Delivery</a>
+            <a class="" href="9">Security & Privacy</a>
+        </div>
+        <div class="col-12 col-lg-9 col-xl-9 ">
+            <div class="answerContain">
+                <div class="row">
+                    <div class="col-12 questionBlock" id="" data-category="1" style="display: block;">
+                        <h3 class="">Track your package</h3>
+                        <div>
+                            <p>Order Tracking may depend on your city and type of product purchased. Kindly mention your order id on our official WhatsApp account and our dedicated team of customer service representatives will provide you an estimated time
+                                of delivery. Furthermore, for orders that are fulfilled by third party logistics providers, a tracking number will be provided upon request.</p>
+                            <p>To track your package:</p>
+                            <ul class="faqs-ul-1">
+                                <li>1. Go to our WhatsApp help center.</li>
+                                <li>2. Find order number by order invoice.</li>
+                                <li>3. Track your order status via WhatsApp customer care</li>
+                                <li></li>
+                            </ul>
+                            <p>Depending on the shipping method you chose, it's possible that the tracking information might not be visible immediately.</p>
+                            <p><b>Note:</b> Tracking information on orders delivered through 3 Party Logistics Partners depends on the accuracy of their systems. Please allow for some additional time in case of delay in delivery.</p>
+                            <p>If the estimated delivery date for your package has passed and your tracking information hasn't changed, allow an additional day or two for the package to be delivered.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 questionBlock" id="" data-category="1" style="display: block;">
+                        <h3 class="">Undeliverable Packages</h3>
+                        <div>
+                            <p>Occasionally, packages may be marked as undeliverable. Such orders are cancelled and customers are intimated accordingly. Generally, you receive an email confirming the return and refund details (if applicable) within 48 hours
+                                of the undeliverable scan. For information about the time it takes to process your refund, go to Refunds.</p>
+                            <p>A package might be returned as undeliverable for several reasons:</p>
+                            <ul class="faqs-ul">
+                                <li>The address is incorrect or outdated. Usually, the package is stored for a period that can vary depending on the courier who holds it and then returns it to us. Double-check the address carefully when placing your order.</li>
+                                <li>Our system doesn't recognize the way an address was entered, or the package was assigned to a carrier that can't deliver to that address.</li>
+                                <li>You used a restricted address. If you send the order to a prison, correctional facility, or other similar institution, the products and/or the carrier responsible for delivery may be subject to specific restrictions.</li>
+                                <li>Several delivery attempts were made but failed. Most of our delivery partners and our internal delivery structure make more than one attempt to deliver a package. If they find that they can't successfully deliver your package,
+                                    they'll mark it as undeliverable.</li>
+                                <li>The carrier attempted delivery but failed. Most of our carriers make more than one attempt to deliver a package. If they find that they can't successfully deliver your package, they'll return it to us.</li>
+                                <li>The recipient refused the delivery. A gift recipient who isn't expecting a gift may refuse a package if they believe it's being delivered to them by mistake. In this case, we'll refund the gift purchaser and let them know
+                                    by email. If you want to place a new order for the gift, you may want to let the recipient know that a surprise is on the way.</li>
+                                <li>The address was illegible. In rare cases, address labels may become impossible to read in transit. If that happens, a carrier will return the package to us.</li>
+                                <li>The package was damaged in transit. If a package is damaged while it's on its way to you, the carrier may return it without attempting delivery.</li>
+                            </ul>
+                            <p>We may re-ship orders that are marked as undeliverable upon specific customer request. Kindly get in touch to resolve any issues if your order has been cancelled having been marked as undeliverable. If you still want to purchase
+                                items that were undeliverable, place a new order on our website.</p>
+                            <p>If you suspect your order can't be delivered as addressed, and you haven't received confirmation of its return or refund four weeks after from the estimated delivery date, kindly contact us.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 questionBlock" id="" data-category="1" style="display: block;">
+                        <h3 class="">Find a Missing Item from Your Package</h3>
+                        <div>
+                            <p>If you received your package and an item is missing, do the following:</p>
+                            <ul class="faqs-ul-1">
+                                <li>1. Go to Your Orders to see if your missing item is in another shipment.</li>
+                                <li>2. Check our email for an intimation from us. Katib Customer support team tries to ensure that every customer is contacted in case of any issues in their order. If we cannot contact you, an email is sent to your email address.</li>
+                                <li>3. If you still can't locate your item, contact us.</li>
+                            </ul>
+                            <p><b>Note: </b>If your item is missing a part, contact us for assistance. We try to ensure that the products delivered are 100% Defective-Free. In case you encounter any issues, let us know and we will ensure that the correct
+                                item is delivered to you. Please note that in some cases, you may be asked to cover the return and additional delivery costs, especially if your delivery address is in a region where we use a third party courier service
+                                for last mile delivery.</p>
+                            <p>You may also ask that your order is completely returned if you are not satisfied with the quality of products received. While this occurs on a rare basis, you may contact us directly to process order returns or exchanges. Please
+                                allow for 2-3 days for the return process to conclude for major cities. Smaller cities may see a lead time of upto a week.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 questionBlock" id="" data-category="2" style="display: block;">
+                        <h3>Carrier Contact Information</h3>
+                        <div>
+                            <p>We work with multiple third party courier services to ensure that your items are delivered timely and in a cost effective manner. If you have an issue with your delivery, you may contact us directly @ 0317-1779942 or Email:
+                                <a href="mailto:info@Katib.pk">info@Katib.pk.</a></p>
+                            <p>For packages delivered via third party courier services, our customer support staff will contact you 3 times in order to confirm the delivery nature and additional costs incurred (If Any). Once contacted, you will be shared
+                                a tracking number for your order. You may directly reach out to the delivery service used in order to establish an estimated delivery time. Failure to connect with the customer generally results in us cancelling the order
+                                completely. Customers are intimated via email upon cancellation of an order.</p>
+                            <p>Delivery Instructions entered on your Katib account are only visible to Katib Drivers. If your package is being delivered by a different carrier, please contact them directly and provide the instructions again for a smoother
+                                delivery process. Do note that the instructions provided by you are communicated to the delivery partners but as a best practice you should also contact them directly to avoid any breakdown in communication.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 questionBlock" id="" data-category="9" style="display: block;">
+                        <h3>KATIB.PK PRIVACY NOTICE</h3>
+                        <div>
+                            <p>You will find Privacy Policy page <a href="https://katib.pk/pages/privacy-policy">here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+<script>
+    $(document).ready(function() {
+        $(".questionBlock h3").click(function() {
+            if ($(this).hasClass("active")) {
+                $(".questionBlock > div").slideUp(500);
+                $(".questionBlock h3").removeClass("active");
+                $(".questionBlock").removeClass("active");
+            } else {
+                $(".questionBlock > div").slideUp(500);
+                $(".questionBlock h3").removeClass("active");
+                $(".questionBlock").removeClass("active");
+                $(this).parent().children("div").slideDown(500);
+                $(this).parent().addClass("active");
+                $(this).addClass("active");
+            }
+        });
+
+        $(".selectors a").click(function(e) {
+            e.preventDefault();
+            var category = $(this).attr("href");
+
+            $(".selectors a").removeClass("active");
+
+            if (category == "" || category == 0) {
+                $(".questionBlock").fadeIn(500);
+            } else {
+                $(".questionBlock").fadeOut(500);
+                $(".questionBlock[data-category='" + category + "']").fadeIn(500);
+            }
+
+            $(this).addClass("active");
+        });
+
+        const params = new URLSearchParams(window.location.search);
+    });
+</script>

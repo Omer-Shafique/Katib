@@ -1,0 +1,48 @@
+{%- assign promotionFiveCollection = collections[section.settings.promotion_five_collection] -%}
+{%- assign collectionName = '' -%}
+
+{%- if promotionFiveCollection != blank -%}
+  {%- assign collectionName = promotionFiveCollection.title -%}
+  {% if promotionFiveCollection.products_count != 0 %}
+    
+    <div class="orange-banner">
+      <div class="orange-banner-content">
+        <p class="banner-text">{{ section.settings.promotion_five_text }}</p>
+      </div>
+    </div>
+    
+    <div class="grid grid--no-gutters grid--uniform">
+      {% for product in promotionFiveCollection.products limit: 5 %}
+        <div class="grid__item medium-up--one-fifth small--one-fifth">
+          {% include 'product-card', product: product %}
+        </div>
+      {% endfor %}
+    </div>
+
+  {% endif %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": {
+    "en": "Promotion Five Products"
+  },
+  "settings": [
+    {
+      "type": "collection",
+      "id": "promotion_five_collection",
+      "label": {
+        "en": "Promotion Five Collection"
+      }
+    },
+    {
+      "type": "text",
+      "id": "promotion_five_text",
+      "label": {
+        "en": "Promotion Five Text"
+      },
+      "default": "Promotion Five"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,51 @@
+{%- assign promotionThreeCollection = collections[section.settings.promotion_three_collection] -%}
+{%- assign collectionName = '' -%}
+
+{%- if promotionThreeCollection != blank -%}
+  {%- assign collectionName = promotionThreeCollection.title -%}
+  {% if promotionThreeCollection.products_count != 0 %}
+    
+    <!-- Promotional Banner -->
+    <div class="orange-banner">
+      <div class="orange-banner-content">
+        <p class="banner-text">{{ section.settings.promotion_three_text }}</p>
+      </div>
+    </div>
+    
+    <div class="grid grid--no-gutters grid--uniform">
+      <div class="row">
+        {% for product in promotionThreeCollection.products limit: 10 %}
+          <div class="grid__item medium-up--one-fifth small--one-fifth">
+            {% include 'product-card', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  
+  {% endif %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": {
+    "en": "Promotion Three Products"
+  },
+  "settings": [
+    {
+      "type": "collection",
+      "id": "promotion_three_collection",
+      "label": {
+        "en": "Promotion Three Collection"
+      }
+    },
+    {
+      "type": "text",
+      "id": "promotion_three_text",
+      "label": {
+        "en": "Promotion Three Text"
+      },
+      "default": "Promotion Three"
+    }
+  ]
+}
+{% endschema %}

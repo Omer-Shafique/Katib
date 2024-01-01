@@ -1,0 +1,52 @@
+{%- assign featuredCollection = collections[section.settings.featured_collection] -%}
+{%- assign collectionName = '' -%}
+
+{%- if featuredCollection != blank -%}
+  {%- assign collectionName = featuredCollection.title -%}
+  {% if featuredCollection.products_count != 0 %}
+    
+  
+    <div class="featured-products-banner">
+      <div class="featured-products-banner-content">
+        <p class="banner-text">{{ section.settings.featured_text }}</p>
+      </div>
+    </div>
+    
+  
+    <div class="grid grid--no-gutters grid--uniform">
+      <div class="row">
+        {% for product in featuredCollection.products limit: 10 %}
+          <div class="grid__item medium-up--one-fifth small--one-fifth">
+            {% include 'product-card', product: product %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  
+  {% endif %}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": {
+    "en": "Featured Products "
+  },
+  "settings": [
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": {
+        "en": "Featured Collection"
+      }
+    },
+    {
+      "type": "text",
+      "id": "featured_text",
+      "label": {
+        "en": "Featured Text"
+      },
+      "default": "Featured Products"
+    }
+  ]
+}
+{% endschema %}
