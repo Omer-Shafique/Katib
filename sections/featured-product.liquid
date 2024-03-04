@@ -153,7 +153,7 @@
               {% for variant in product.variants %}
               <option {% if variant == current_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}" {% unless variant.available %} disabled="disabled" {% endunless %}>
                 {% if variant.available %}
-                {{ variant.title }} - {{ variant.price | money_with_currency }}
+                {{ variant.title }} - {{ variant.price | money_without_currency }}
                 {% else %}
                 {{ variant.title }} - {{ 'products.product.sold_out' | t }}
                 {% endif %}
